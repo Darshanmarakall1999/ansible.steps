@@ -1,0 +1,135 @@
+## Steps ##
+1)sudo apt-get update
+2)sudo apt install openssh-server // to install ssh
+3> sudo ufw allow 22 // allow ssh 
+3)ssh remote_username@ip_adress //to login to node user
+4)exit // to logout from the user
+5)sudo apt install ansible // to install ansible
+6)ansible --version // to check the installed ansible version
+7)login to user from server
+8)copy the ip adress
+9)exit
+10)cd /etc/ansible //go inside the ansible
+11)ls -la //to check the files
+12)gedit hosts
+13)paste the copied ip adress inside the hosts
+14)cd .ssh
+15)ssh key-gen // to generate key(press enter)
+16)ls -la //to see all files inside the .ssh
+17)cat id_key.pub // copy the key
+18)gedit authorized key // paste the copied key
+19)ssh-copy-id ip_adress // tocheck whether the connection established or not
+20)ansible all --list-hosts// to list out the clients ip address
+21)ansible all -m ping
+22)ansible all -m command -a 'hostname'
+ad-hocks commands
+23)ansible all -m shell -a "mkdir dir1" // to create a direcrtory from adhoc commands(ad-hoc commands)
+-> ansible all -m copy -a 'src=/source path dest=/destination path'
+-> ansible all -m fetch -a 'src=/source path dest=/destination path'
+----------------------------------------------
+
+playbooks:
+-> sudo gedit file.yaml  --> creating a playbook file
+-> ansible-playbook --syntax-check file.yaml  --> to check the syntax 
+-> ansible-playbook file.yaml  --> to run the playbook
+ examples of playbooks:
+
+============================================================================================== 
+1)Write a playbok to create a directory in the users machine
+--->
+- name: Shell Command 
+  hosts: all 
+  tasks: 
+
+    - name: creating directory 
+      shell: 
+            "mkdir dir4" 
+      register: abc
+    - debug: msg="{{abc.stdout}}"
+===============================================================================================
+
+2) write a playbook to check current date of client machine
+-->
+- name: Shell Command 
+  hosts: all 
+  tasks: 
+
+    - name: Check Date with Shell command 
+      shell: 
+         "date" 
+      register: datecmd 
+      tags: datecmd 
+
+    - debug: msg="{{datecmd.stdout}}"
+==============================================================================================
+3) write a playbook to install git on client machines
+-->
+- name: Installing package 
+  hosts: all 
+  tasks: 
+
+    - name: Installing GIT package
+      apt: 
+        name: git
+        state: present
+      become: yes 
+=============================================================================================
+4) write a playbook to uninstall git on client machines
+-->
+- name: Unstalling package 
+  hosts: all 
+  tasks: 
+
+    - name: Unstalling GIT package
+      apt: 
+        name: git
+        state: absent
+      become: yes
+----------------------------------------------------------------------------------------      
+--> if we use latest inplace state value: if the git is available alaready in the client machine then in that case that will upgraded to newer version by using latest arguments.
+----------------------------------------------------------------------------------------
+=============================================================================================
+5) write a playbook to clone git repo to local
+-->
+- name: git cloning
+  hosts: all
+  tasks:
+    - name: clonning a repo
+      git:
+        repo: https://github.com/Darshanmarakall1999/ansible.steps.git
+        dest: /home/darshan1/repos
+        clone: yes
+        update: yes
+=============================================================================================
+6) write a playbook to copy file/directory to local
+-->
+- name: copy the specific file/directory to a local
+  hosts: all
+  tasks:
+    - name: copy 
+      copy:
+        src: /etc/ansible/hosts
+        dest: /home/darshan1/copy
+=============================================================================================
+7) write a playbook to fetch file from the local to server
+--> fetch module is not working for directory
+-->
+- name: fetching file
+  hosts: all
+  tasks:
+    - name: fetching file from the local to server
+      fetch:
+        src: /home/darshan1/repos/demo2.txt
+        dest: /home/darshan/fetch/
+        flat: yes
+=============================================================================================
+
+
+
+
+
+
+
+
+
+
