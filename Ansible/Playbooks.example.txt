@@ -1,0 +1,9 @@
+PlayBooks example:
+===================================
+1) create a directory
+2) installing packageous
+3) unsinstalling packageous
+4) Checking date of the client machine
+5) Clonning Git repo to local
+6) Copy from server to client
+7) fetch file from client to server
