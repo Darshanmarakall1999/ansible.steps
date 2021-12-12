@@ -1,0 +1,27 @@
+1> kubectl get nodes
+2> kubectl get pods
+3> kubectl describe pod pod-name
+4> kubectl delete pod pod-name
+5> kubctl create -f file.yaml
+6> alias k="kubectl"
+  --> k get pods
+  --> k get nodes
+7>test book commands (service)
+
+
+======================================= 
+apiVersion: v1
+kind: Pod
+metadata:
+name: ngnix-pod
+labels:
+env: dev
+version: v1
+spec:
+containers:
+- name: my-nginx
+image: nginx:latest
+ports:
+- containerPort: 80
+===============================
+kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml

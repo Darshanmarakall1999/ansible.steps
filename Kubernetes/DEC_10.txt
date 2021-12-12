@@ -1,0 +1,23 @@
+Services:)
+--------------------------
+--> A service in kubernetes is an abstraction that descibes a collection of conceptual pods in an application runs and an access policy for pods
+-->Pods-->collections of logical containers
+-->Deployment-->identicle pods
+----------------------------------------------------------
+--> If a pod wants to connect to with another pod
+
+nginx.pod.yaml
+apache2.pod.yaml
+---> Then it must be determine its IP address
+---------------------------------------------------
+Categories of kubernetes services:
+---------------------------
+1.ClusterIP:)
+-----------
+When we create a pod we get a default IP address that IP address is called ClusterIP
+-->ClusterIP is not reachable beyond the cluster.
+-------------------------------------------
+2.NodePort:)
+------------
+3.Loadbalancer
+4.

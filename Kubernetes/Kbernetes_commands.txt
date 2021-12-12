@@ -1,0 +1,6 @@
+KUBERNETES COMMANDS:)
+=====================
+
+1. kubectl get nodes --> to see all nodes coneected
+2. kubectl get pods --> to see all pods 
+3. kubectl 

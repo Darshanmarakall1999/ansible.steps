@@ -1,0 +1,22 @@
+=============================================
+KUBERNETES:)
+=============================================
+--> How Kubernetes is related to Docker
+------->Docker is a containerzation platform and kubernetes is a Container Management or(Orchestrator) tool for container like Docker.
+------->Kubernetes uses a Container Runtime Interface(CRI) plugin interface which enables Kubelet to use a wide variety of container runtimes, withput the need of recompile.
+---------------------------------------------
+Difference between deploying applications on Hosts and Containers.
+==============================================
+Installation of Kubernetes:)
+----------------------------
+--> launch 3 instances with minimum 2 gb ram.(ubuntu/t2.medium)
+--> one for master node and other two for worker nodes.
+-->
+-----------------------------------------------------------=
+-=========================================================
+main pods :
+apiversion
+kind
+metadata
+spec
+===========================================================
