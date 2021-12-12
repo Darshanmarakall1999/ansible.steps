@@ -1,0 +1,36 @@
+29/11/2021
+==================================
+Virtual machine:-) cost effective, hardwareless, 
+----------------------------
+Hypervisor-->it will be the mounted on the top of VM
+-->it monitoring the VM'S
+-----------------------------
+VM
+------                     
+1. Application running on VM syste can 
+   run on different OS.
+2. VM virtualizes the computer system
+3. Vm size we can modify
+4. VM uses a lot of system memory
+5. Vm takes huge time as computer to containers, we can
+   face some performance issues as well
+-----------
+Container
+-----------
+1. share a single OS
+2.It vertualizes the os system only
+3. While the size of the containers is very light i.e. few MB
+4. While containers required very less memory 
+5. While containers takes a few seconds to open
+==================================================
+DOCOR:)
+--> It is a set of services allowing to <Build>, <ship> and <run> software in
+packages called containers.
+
+=====================================
+CONTAINERS:)
+--> containers are <self-sufficient>-->all code and depencies is packaged
+--> are lightweight-->The same OS kernel is shared
+-->run in isolation and within resource limits.
+
+

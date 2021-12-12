@@ -1,0 +1,6 @@
+sudo apt-get update
+sudo apt install docker.io -y
+sudo apt install docker-compose 
+sudo su --> switch to docker mode
+docker ps --> list all running containers
+docker ps -a --> list all containers

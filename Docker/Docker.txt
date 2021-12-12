@@ -1,0 +1,224 @@
+:==========:
+:(:Docker:):
+:==========:
+-->Docker is a software that allows us to build , test and deploy our applications quickly.
+-->Docker packages software into standerdized units called "Container" that have everything the software needs
+   to run including libraries, system tools, code and Runtime.
+----------------------------------------------------------------------------------------------------------------------
+How Docker Works:)
+-------------------
+--> Docker works by providing a standard way to run our code. 
+    "Docker is an Operating Syatem for Containers".
+-->Docker is installed on each server and provides simple
+   commands which we can use to build , start or stop containers.
+-->Why we use Docker:)
+1) Using Docker we can ship our code fatser, standardize application operations. seamlessly move code
+  and save money by improving resources utilization.
+2) With Docker , we get a single object that can reliably run anywhere.
+3) Docker's simple and straightforward syntax gives us full control.
+
+When to use Docker:)
+1) We can use a docker containers as a core building block creating modern applications and platforms.
+2) Docker makes it easy to build and run distributed microservices architectures, deploy our code with standardized 
+   contineous integration and delivery pipelines, build high-scalable dara
+   processing systems and create fully-managed platforms for developers.
+===========================================
+Docker commands
+-->sudo apt-get update
+-->sudo apt install docker.io -y
+-->
+1) docker ps-->to list docker running containers 
+   ing state.
+2)docker ps -a -->to list all containers(running or stopped or terminating)
+3)docker run busybox echo hello world---> to run an existing container.
+4)docker run -it ubuntu bash-->  -i means conected to standard docker input and t -> pseudo terminal--> go to inside container/terminal
+-->whenever we run a image/container
+first docker will check if is it existing in local or not
+after that this will pull from docker hub
+-----------------------------------------------------------
+5)Background Container:)
+  docker run -d id -->running on background
+6)docker ps -a | grep -i "container name"--> for searching specific running container
+7)docker ps -l--> to see the last modified container status
+8)docker ps -q --> to see the container_id of all running containers
+9)docker ps -lq --> to see the container_id of last started containers.
+10)docker logs --tail 1 --follow container_id  --> it will displays the real time logs
+
+if we want to delete a container which is running
+first we need to stop that container and then we need to stop that running container 
+and then we can delete
+11) stop the running container
+    docker stop---> it will send term signal to the terminal-->it will wait for 10 seconds here-->if it will not stop, then it will send kill signal to terminal to stop the container.
+    docker kill---> it will kill directly the process of container
+12) docker start container_id --> to start the continer 
+13) docker rm container_id  --? to remove the container
+14) docker system prunes --> all unused/stopped containers will be removed
+===================================================
+-->docker image ls
+-->docker image ls --format "{{.ID}}:{{.Repository}}"---> to get the imges in the format specified
+
+
+
+docker image ls --no-trunc 
+
+
+
+docker image ls --filter "dangling=true"
+docker image ls --filter "before=true"--> it will display all the images before this image
+docker image ls --filter "since=true"--> it will display all the images after this image
+--------------------------------------------
+-->docker image inspect ba6acccedd29 | more -->more detalis about image
+-->docker image tag jpetazzo/clock:latest darshan:latest  -->we can copy the images and we can gave any name 
+-->docker image rm img_name --> to remove image
+-->docker info --> to get informations about docker details
+-->docker --verson  --> to get the docker version
+-->docker search ubuntu  --> to serch the image 
+==============================================
+Creating Image
+-----------
+1)nano Dockerfile --> creating one file -->the name must Dockerfile only, we cannot ceate with any name
+
+2)inside Dockerfile 
+-->From ubuntu  --> from base image name
+-->RUN apt-get update  --> first we are updating
+-->RUN apt-get install figlet  --> we are installing figlet
+3)to run the image and creating container
+  docker build -t figlet . --> building image
+    -t --> tagging
+    . --> current folder
+    figlet --> image name we can gave any name
+
+============================================
+to remove docker iamge
+--> docker image rm image_id
+--------------------------------------------
+to remove the container
+--> docker rm container_id
+---------------------------------------------
+=============================================
+Psuhing images to the Docker hub:)
+-------------------------------------------------------------------------
+Step1) Docker login
+       by givng Username and password
+step2) Pull the image which u want to push to the docker hub
+       Docker pull image name
+step3) Create a tag
+       Docker tag imagename:tagname username/repository_name:new tagname
+step4) Docker push username/repository_name:new tagname
+-------------------------------------------------------------------------
+Example:)
+-------------------------------------------------------------------------------------------------------------------
+root@ip-172-31-1-101:/home/ubuntu# docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+Digest: sha256:52817dece4cfe26f581c834d27a8e1bcc82194f914afe6d50afad5a101234ef1
+Status: Image is up to date for busybox:latest
+root@ip-172-31-1-101:/home/ubuntu# docker login
+Authenticating with existing credentials...
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+root@ip-172-31-1-101:/home/ubuntu# docker tag busybox:latest darshanmarakall1999/testrepo:tag3
+root@ip-172-31-1-101:/home/ubuntu# docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+cmd2                           latest              5f3972ba9874        About an hour ago   106MB
+cmd                            latest              c5582d75349b        About an hour ago   106MB
+abcd                           latest              9d5dd971f6c6        20 hours ago        674MB
+anc                            latest              ac47686af5ff        23 hours ago        106MB
+cmd1                           latest              ac47686af5ff        23 hours ago        106MB
+figlet                         latest              ac47686af5ff        23 hours ago        106MB
+practice                       latest              298e836d58ae        23 hours ago        105MB
+test1                          latest              298e836d58ae        23 hours ago        105MB
+darshanmarakall1999/testrepo   tag2                d23834f29b38        3 days ago          1.24MB
+darshanmarakall1999/testrepo   tag3                d23834f29b38        3 days ago          1.24MB
+busybox                        latest              d23834f29b38        3 days ago          1.24MB
+ubuntu                         latest              ba6acccedd29        6 weeks ago         72.8MB
+darshanmarakall/testrepo       tag1                5d0da3dc9764        2 months ago        231MB
+darshanmarakall1999/testrepo   tag1                5d0da3dc9764        2 months ago        231MB
+centos                         latest              5d0da3dc9764        2 months ago        231MB
+jpetazzo/clock                 latest              7a8965d6553e        7 months ago        1.23MB
+root@ip-172-31-1-101:/home/ubuntu# docker push darshanmarakall1999/testrepo:tag3
+The push refers to repository [docker.io/darshanmarakall1999/testrepo]
+9f2549622fec: Layer already exists
+tag3: digest: sha256:d5c6e74e3115b55dce759c1b3a52b1d2db60dc6929681de2f76cdc5d6f4d7412 size: 527
+-------------------------------------------------------------------------------------------------------------------
+=============================================
+Dockerfile Parameters:)
+------------
+FROM --> It specifies the base (present) image.
+RUN --> It run alinux command, it is used to install packages tnto container
+ENV --> With the help of this parameter we can set Environment, we can have multiple variable in a single Dockerfile.
+COPY --> Copies files and directories to the container.
+ADD --> Copies files and directories to the container. Can unpack compressed files.
+WORKDIR --> It sets the working directory for the instructions that follow.
+LABEL -->It provides metadata like maintainer.
+EXPOSE --> On which port you want to run your docker container.
+ENTRYPOINT -->It provides a command and arguments for an executing container, It defines a base command (and its parameter) for the container.
+CMD -->It defines a default command to run when none is given, It can appear at any point in the file. Ecah CMS will replace and override the previous one.
+       ***As a result, while we have multiple CMD lines inside the Dockerfile, It's useless...
+VOLUME --> Create a directory mount points to access and store persistent data.
+==============================================
+Example:)
+---------
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install figlet
+CMD figlet Hello
+-------------------------------
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install figlet
+ENTRYPOINT ["figlet","Hello"]
+CMD hello world
+------------------------------------
+in above example if we are giving any external input then in that case the output will be
+Hello then external input
+-------------------------------------------------
+if we are not given any input in that case it will take default cmd msg
+i.e. Hello hello world
+------------------------------------------------
+How to run programs in container using dockerfile
+------------------
+RUN apt-get update
+RUN apt-get install -y build-essential
+COPY cprogram.c /
+RUN apt-get install gcc
+RUN gcc cprogram.c -o hello
+RUN make hello
+CMD /hello
+----------------------------------------------------
+--> docker inspect container_id -->it will give all informations about the container
+--> docker run -d -P nginx --> -P publish all --> allows to all computers
+-->
+-------------------------------
+-->docker network ls
+-->docker network inspect bridge
+--------------------------------
+-->to create our own network:)
+   -->docker network create --driver bridge new_network
+
+-->to attach the container to the specific network:)
+   --> docker run -it --network=new_network ubuntu /bin/bash
+=====================================================================================================================
+-->To connect two containers / to establish communication between two containers
+step1) run two containers 
+      --> docker run -dti --name newname1 --net new_network imagename1 /bin/bash  --> run background
+      --> docker run -it --name newname2 --new new_network imagename2  --> run foreground
+      --> Those two containers must be running in the same network then only those can communicate between them
+step3) after that ping from any one of the container to another
+     --> inside newname2
+     --> docker ping newname1
+     --> then cantainer newname2 will starts communicated with container newname1
+======================================================================================================================
+Docker volume:)
+---------------
+-->docker volume create volume_name
+=======================================
+Docker Compose:)
+-------------------------------------------
+06/12/2021
+-------------------------------------------
+
+ 

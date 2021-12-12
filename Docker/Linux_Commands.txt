@@ -1,0 +1,128 @@
+Linux Command:
+========================================
+pwd-->present working directory
+ls-->list all directories and files
+r-->reverse
+t-->   sort by modification time, newest first
+h-->Human Readabale
+R-->Recursive
+mv source destination-->to change name
+cp-->copy command
+mv-->move command
+ps-->
+ls -lth-->to get the latest modified file
+grep-->to search the content inside the directory or file
+grep "text" *-->it will search the files containing text word
+---------------------------------------
+grep -v -->exclude the mentioned text
+--->
+user@user-virtual-machine:~/dir2$ cat abc.txt
+Hello
+Hi
+hi
+darshan
+darshan
+good night
+user@user-virtual-machine:~/dir2$ grep 'darshan' abc.txt
+darshan
+darshan
+user@user-virtual-machine:~/dir2$ grep -v 'darshan' abc.txt
+Hello
+Hi
+hi
+good night
+
+-----------------------------------
+Find-->search for the file and directory
+
+find . -type f -name "abc*"-->to find the file with something abc name in the machine
+or find . -name "abc*"
+/ -->root directory
+. -->current directory
+find . -type f -empty-->to find the empty files in directory
+to find the last changes in the 30 mins--> find . -cmin -30
+
+to find the last modified in the 30 mins-->find . -mmin -30
+ 
+-----------------------------------------
+user@user-virtual-machine:~/Downloads/Nov23$ pwd
+/home/user/Downloads/Nov23
+user@user-virtual-machine:~/Downloads/Nov23$ ls
+abc.txt  demo.txt  eg1.txt  text.txt  text.txt.save
+user@user-virtual-machine:~/Downloads/Nov23$ mkdir dir1
+user@user-virtual-machine:~/Downloads/Nov23$ ls
+abc.txt  demo.txt  dir1  eg1.txt  text.txt  text.txt.save
+user@user-virtual-machine:~/Downloads/Nov23$ find . -type f -name "ab*"
+./abc.txt
+user@user-virtual-machine:~/Downloads/Nov23$ find . -type d -name "di*"
+./dir1
+user@user-virtual-machine:~/Downloads/Nov23$ 
+------------------------------------------
+Important commands
+----------------------------------
+df -kh
+df-->disk free
+kh-->kilo byte human readable
+top-->CPU Utilization/Just like windows task manager
+
+use case:file system getting filled and system getting down at that we use this df -kh to check the disk free
+------------------------------------------------
+du -sh *-->disk uses
+----------------------------------------
+sed --->extreeme editer
+-->to replace any text by some text using sed
+sed 's/initial text/final text/' file.txt
+-------------------------------------------
+to replace perticular ocurance 
+use 
+sid -z 's/qwed/qwe/3' file.txt
+----------------------------
+to replace all  hi by hello
+sid 's/hi/hello/g' file.txt
+-------------------------------------
+ctrl a-->cursor will go to the start line
+ctrl e-->end line
+-------------------------------------------
+user@user-virtual-machine:~/Downloads$ grep 'file1' eg4.txt
+this is file1
+user@user-virtual-machine:~/Downloads$ grep -v 'file1' eg4.txt
+dtyuil,mbh
+user@user-virtual-machine:~/Downloads$ sed -n '/file1/ !p' eg4.txt
+dtyuil,mbh
+user@user-virtual-machine:~/Downloads$ 
+-----------------------------------------------------
+this is used for linux
+YUM command-->with the help of yum command we can install
+the package and uninstall the package and modify or upgrade
+----------------------------------------------------------
+for ubuntu use --->
+apt command
+-->sudo apt install firefox
+-->to install firefox
+------------------------------------
+to install apache
+sudo apt install apache2
+--------------------------------------
+sudo apt update
+available updates are updating;
+------------------------
+uninstall apach2;
+sudo apt remove apache2
+--------------------------------------
+sudo apt-get upgate
+before installing any software we need to use above command--> so that it will update the os for 
+------------------------------------------------------------------------------
+sudo apt list --upgradable
+this will list all the available upgrades needed;
+-----------------------------------------------------------------
+
+Riki sir email_id:
+consult2teamit@gmail.com
+9580907186
+-----------------------------------------------------------------
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+DevOps:)
+=================================================
+Development + Operations
+---------------------
+-->if we develop an software in DevOps that software or app will run in any wahere
+Devops Tool
+----------------------------
+Configuration Management Tool:)
+1> Ansible
+2> Chef
+3> Puppet
+4> Saltstack
+-------------------------------------
+ANSIBLE:
+-------------------
+--> It is a open source software and discovered at 2012
+-->With the help of SSH protocol we can ansible will connect to the hosts
+---------------------------------------------------------
+Playbook
+-->It is a simple file written in
+YMAL which describes the task to be ececuted by ansible
+------------------------------------------------
+Ansible.cfg
+-->this file contains the configurations for the ansible like path of the inventory.
+Inventory -->we called it host inventory-->(It will have all the ip addresses of machines)
+location will be /etc/ansible/hosts
+-----------------------------------------------------
+Task
+-->An action(run this, delete that)
+-------------------------------------
+Ansible roles and modules
+--->
